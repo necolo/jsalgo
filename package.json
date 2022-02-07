@@ -1,0 +1,17 @@
+{
+  "name": "jsalgo",
+  "version": "1.0.1",
+  "author": "Necolo Lv.C <negko311@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "publish": "lerna run build && lerna publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Necolo/jsalgo.git"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0",
+    "tape": "^5.3.1"
+  }
+}
