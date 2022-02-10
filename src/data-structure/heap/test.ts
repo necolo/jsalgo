@@ -1,4 +1,4 @@
-import tape = require('tape');
+import tape from 'tape';
 import { MinHeap, MaxHeap, Heap } from '.';
 
 function randomInt(min: number, max: number) {

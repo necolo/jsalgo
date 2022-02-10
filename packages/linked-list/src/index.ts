@@ -1,3 +1,5 @@
+import { Comparator, CompareFunc } from '../../../src/utils/comparator';
+
 export class LinkNode<T> {
   public value: T;
   public next: LinkNode<T> | null;
@@ -8,17 +10,13 @@ export class LinkNode<T> {
   }
 }
 
-type FindFunc<T> = (v: T) => boolean;
-type CompactFind<T> = T | FindFunc<T>;
-
 export class LinkedList<T> {
   public head: LinkNode<T> | null = null;
   public tail: LinkNode<T> | null = null;
+  public comparator: Comparator<T>;
   private _length = 0;
-  constructor(values?: T[]) {
-    if (values) {
-      this.fromArray(values);
-    }
+  constructor(compareFunc?: CompareFunc<T>) {
+    this.comparator = new Comparator(compareFunc);
   }
 
   /* -------------------------------------------------------------------------- */
@@ -56,38 +54,6 @@ export class LinkedList<T> {
   }
 
   /**
-   * insert before a value
-   * @param insertValue
-   * @param nextNode 
-   */
-  public insertBefore(insertValue: T, findNext: FindFunc<T>) {
-    const { prev } = this._findNode(findNext);
-    if (prev) {
-      const node = new LinkNode(insertValue);
-      node.next = prev.next;
-      prev.next = node;
-    } else {
-      this.append(insertValue);
-    }
-  }
-
-  /**
-   * insert after a value
-   * @param insertValue 
-   * @param findPrev 
-   */
-  public insertAfter(insertValue: T, findPrev: FindFunc<T>) {
-    const { node: prev } = this._findNode(findPrev);
-    if (prev) {
-      const node = new LinkNode(insertValue);
-      node.next = prev.next;
-      prev.next = node;
-    } else {
-      this.append(insertValue);
-    }
-  }
-
-  /**
    * concat an array
    * @param arr 
    */
@@ -114,22 +80,12 @@ export class LinkedList<T> {
   /*                                    Find                                    */
   /* -------------------------------------------------------------------------- */
 
-  private _findFunc(v: CompactFind<T>) {
-    let func;
-    if (v instanceof Function) {
-      func = v;
-    } else {
-      func = value => value === v;
-    }
-    return func;
-  }
-
-  private _findNode(v: CompactFind<T>) {
-    const func = this._findFunc(v);
+  private _findNode(v: T) {
+    const { comparator } = this;
     let prev: LinkNode<T> | null = null;
     let node = this.head;
     while(node) {
-      if (func(node.value)) {
+      if (comparator.equals(node.value, v)) {
         return { prev, node };
       }
       prev = node;
@@ -146,7 +102,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns
    */
-  public find(v: CompactFind<T>) {
+  public find(v: T) {
     const { node } = this._findNode(v);
     return node?.value || null;
   }
@@ -156,7 +112,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns
    */
-  public findPrev(v: CompactFind<T>) {
+  public findPrev(v: T) {
     const { prev } = this._findNode(v);
     return prev?.value || null;
   }
@@ -166,7 +122,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns {boolean}
    */
-    public has(v: CompactFind<T>) {
+    public has(v: T) {
       return Boolean(this.find(v));
     }
 
@@ -179,7 +135,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns
    */
-  public remove(v: CompactFind<T>) {
+  public remove(v: T) {
     const { node, prev } = this._findNode(v);
     if (!node) {
       return;

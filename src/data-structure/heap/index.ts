@@ -1,16 +1,10 @@
+import { Comparator, CompareFunc } from 'src/utils/comparator';
+
 export class Heap<T> {
-  constructor(public list: T[] = []) {}
-
-  /* -------------------------------------------------------------------------- */
-  /*                              flexible methods                              */
-  /* -------------------------------------------------------------------------- */
-
-  public compare(p: T, c: T) {
-    return true;
-  }
-
-  public equals(v1: T, v2: T) {
-    return v1 === v2;
+  public list: T[] = [];
+  public comparator: Comparator<T>;
+  constructor(compareFunc?: CompareFunc<T>) {
+    this.comparator = new Comparator(compareFunc);
   }
 
   /* -------------------------------------------------------------------------- */
@@ -125,11 +119,11 @@ export class Heap<T> {
   public indexOf(v: T, currIdx = 0): number {
     const compareValue = this.list[currIdx];
 
-    if (this.equals(compareValue, v)) {
+    if (this.comparator.equals(compareValue, v)) {
       return currIdx;
     }
 
-    if (!this.compare(compareValue, v)) {
+    if (!this.comparator.lessThan(compareValue, v)) {
       return -1;
     }
 
@@ -156,15 +150,16 @@ export class Heap<T> {
    */
   public heapifyDown(startIdx = 0) {
     let index = startIdx;
+    const { comparator } = this;
     while (this.hasLeftChild(index)) {
       let smallerChildIdx = this.findLeftChildIndex(index);
       if (
         this.hasRightChild(index) &&
-        this.compare(this.rightChild(index), this.leftChild(index))
+        comparator.lessThan(this.rightChild(index), this.leftChild(index))
       ) {
         smallerChildIdx = this.findRightChildIndex(index);
       }
-      if (this.compare(this.list[index], this.list[smallerChildIdx])) {
+      if (comparator.lessThan(this.list[index], this.list[smallerChildIdx])) {
         break;
       }
       this.swap(index, smallerChildIdx);
@@ -176,10 +171,11 @@ export class Heap<T> {
    * Look up from the last element
    */
   public heapifyUp(startIdx = this.list.length - 1) {
+    const { comparator } = this;
     let index = startIdx;
     while (
       this.hasParent(index) &&
-      this.compare(this.list[index], this.parent(index))
+      comparator.lessThan(this.list[index], this.parent(index))
     ) {
       const parentIdx = this.findParentIndex(index);
       this.swap(index, parentIdx);
@@ -191,14 +187,15 @@ export class Heap<T> {
     if (!this.hasLeftChild(idx)) {
       return;
     }
-    if (this.compare(this.leftChild(idx), this.list[idx])) {
+    const { comparator } = this;
+    if (comparator.lessThan(this.leftChild(idx), this.list[idx])) {
       throw new Error(`Invalid heap: ${this.list[idx]}`);
     }
     this.validate(this.findLeftChildIndex(idx));
     if (!this.hasRightChild(idx)) {
       return;
     }
-    if (this.compare(this.rightChild(idx), this.list[idx])) {
+    if (comparator.lessThan(this.rightChild(idx), this.list[idx])) {
       throw new Error(`Invalid heap: ${this.list[idx]}`);
     }
     this.validate(this.findRightChildIndex(idx));
@@ -210,13 +207,19 @@ export class Heap<T> {
 }
 
 export class MinHeap<T> extends Heap<T> {
-  public compare(parent: T, child: T) {
-    return parent < child;
+  constructor() {
+    super();
   }
 }
 
 export class MaxHeap<T> extends Heap<T> {
-  public compare(parent: T, child: T) {
-    return parent > child;
+  constructor() {
+    const compareFunc = function (a: T, b: T) {
+      if (a === b) {
+        return 0;
+      }
+      return a < b ? 1 : -1;
+    }
+    super(compareFunc);
   }
 }
