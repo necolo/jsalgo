@@ -9,7 +9,7 @@
     "downlevelIteration": true,
     "allowSyntheticDefaultImports" : true,
     "allowJs": true,
-    "declaration": false,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "importHelpers": true,
     "removeComments": false,
@@ -28,7 +28,7 @@
     "baseUrl": "./",
     "outDir": "lib"
   },
-  "include": ["src"],
+  "include": ["src", "packages/utils/src"],
   "exclude": [
     "build",
     "node_modules"

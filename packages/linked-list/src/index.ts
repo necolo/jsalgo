@@ -1,5 +1,4 @@
-import { Comparator, CompareFunc } from '../../../src/utils/comparator';
-
+import { Comparator, CompareFunc } from '@jsalgo/utils';
 export class LinkNode<T> {
   public value: T;
   public next: LinkNode<T> | null;

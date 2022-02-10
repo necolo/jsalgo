@@ -1,4 +1,4 @@
-import { Comparator, CompareFunc } from 'src/utils/comparator';
+import { Comparator, CompareFunc } from 'packages/utils/src';
 
 export class Heap<T> {
   public list: T[] = [];

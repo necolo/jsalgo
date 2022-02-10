@@ -70,3 +70,5 @@ export class Comparator<T> {
     }
   }
 }
+
+export default Comparator;

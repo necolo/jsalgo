@@ -1,0 +1,33 @@
+{
+  "name": "@jsalgo/utils",
+  "version": "1.0.1",
+  "description": "utils for algorithms",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "algorithms"
+  ],
+  "author": "necolo <negko311@gmail.com>",
+  "homepage": "https://github.com/Necolo/jsalgo",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Necolo/jsalgo.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Necolo/jsalgo/issues"
+  }
+}
