@@ -23,6 +23,10 @@
     "type": "git",
     "url": "git+https://github.com/Necolo/jsalgo.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"

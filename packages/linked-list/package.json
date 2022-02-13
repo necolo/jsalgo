@@ -1,6 +1,6 @@
 {
   "name": "@jsalgo/linked-list",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Linked list structure",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,7 +19,8 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "keywords": [
     "linked",
