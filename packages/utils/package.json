@@ -29,5 +29,8 @@
   },
   "bugs": {
     "url": "https://github.com/Necolo/jsalgo/issues"
+  },
+  "devDependencies": {
+    "tslib": "^2.3.1"
   }
 }

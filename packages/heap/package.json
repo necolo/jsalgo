@@ -11,6 +11,7 @@
   "homepage": "https://github.com/Necolo/jsalgo#readme",
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -23,9 +24,16 @@
     "url": "git+https://github.com/Necolo/jsalgo.git"
   },
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
     "url": "https://github.com/Necolo/jsalgo/issues"
+  },
+  "devDependencies": {
+    "tslib": "^2.3.1"
+  },
+  "dependencies": {
+    "@jsalgo/utils": "^1.0.1"
   }
 }
