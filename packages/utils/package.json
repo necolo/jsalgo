@@ -29,6 +29,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "prepare": "npm run build",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
