@@ -4,7 +4,6 @@
     "outDir": "./lib"
   },
   "include": [
-    "./src",
-    "__tests__/index.ts"
+    "./src"
   ]
 }

@@ -1,5 +1,5 @@
 import tape from 'tape';
-import Queue from '.';
+import Queue from '../src';
 
 tape('Test queue', (t) => {
     const queue = new Queue();

@@ -1,5 +1,5 @@
 import tape from 'tape';
-import LinkedList from '.';
+import LinkedList from '../src';
 
 tape('Test linked list', (t) => {
     const list = new LinkedList();

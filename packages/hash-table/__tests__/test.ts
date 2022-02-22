@@ -1,5 +1,5 @@
 import tape from 'tape';
-import HashTable from '.';
+import HashTable from '../src';
 
 tape('Test hash table', (t) => {
     const table = new HashTable();

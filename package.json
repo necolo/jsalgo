@@ -1,8 +1,9 @@
 {
-  "name": "jsalgo",
+  "name": "@jsalgo/root",
   "version": "1.0.1",
   "author": "necolo <negko311@gmail.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "publish": "lerna run build && lerna publish"
   },

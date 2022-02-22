@@ -1,11 +1,11 @@
-import LinkedList from '../linked-list';
+import LinkedList from '@jsalgo/linked-list';
 
 /**
  * Add to end, remove from first
  * [...] <-- add
  * remove <-- [...]
  */
-class Queue<T> {
+export class Queue<T> {
   public linkedList: LinkedList<T> = new LinkedList<T>();
   constructor(
   ) { }
