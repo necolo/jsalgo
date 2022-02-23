@@ -37,7 +37,8 @@
     "url": "https://github.com/Necolo/jsalgo/issues"
   },
   "dependencies": {
-    "@jsalgo/linked-list": "^1.0.2"
+    "@jsalgo/linked-list": "^1.0.2",
+    "@jsalgo/utils": "^1.0.1"
   },
   "devDependencies": {
     "tape": "^5.5.2",

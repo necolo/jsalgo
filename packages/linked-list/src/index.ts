@@ -1,4 +1,4 @@
-import { Comparator, CompareFunc } from '@jsalgo/utils';
+import { Comparator, CompareFunc, PartialV } from '@jsalgo/utils';
 export class LinkNode<T> {
   public value: T;
   public next: LinkNode<T> | null;
@@ -9,7 +9,7 @@ export class LinkNode<T> {
   }
 }
 
-export class LinkedList<T> {
+export class LinkedList<T, P = PartialV<T>> {
   public head: LinkNode<T> | null = null;
   public tail: LinkNode<T> | null = null;
   public comparator: Comparator<T>;
@@ -79,7 +79,7 @@ export class LinkedList<T> {
   /*                                    Find                                    */
   /* -------------------------------------------------------------------------- */
 
-  private _findNode(v: T) {
+  private _findNode(v: P | T) {
     const { comparator } = this;
     let prev: LinkNode<T> | null = null;
     let node = this.head;
@@ -101,7 +101,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns
    */
-  public find(v: T) {
+  public find(v: P) {
     const { node } = this._findNode(v);
     return node?.value || null;
   }
@@ -111,7 +111,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns
    */
-  public findPrev(v: T) {
+  public findPrev(v: P) {
     const { prev } = this._findNode(v);
     return prev?.value || null;
   }
@@ -121,7 +121,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns {boolean}
    */
-    public has(v: T) {
+    public has(v: P) {
       return Boolean(this.find(v));
     }
 
@@ -134,7 +134,7 @@ export class LinkedList<T> {
    * @param {string|number|Function} v
    * @returns
    */
-  public remove(v: T) {
+  public remove(v: P) {
     const { node, prev } = this._findNode(v);
     if (!node) {
       return;

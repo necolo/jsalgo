@@ -1,8 +1,9 @@
-export type CompareFunc<T> = (a: T, b: T) => number;
+export type PartialV<T> = T extends object ? Partial<T> : T;
+export type CompareFunc<T, P = Partial<T>> = (a: P, b: P) => number;
 
-export class Comparator<T> {
+export class Comparator<T, P = Partial<T>> {
   constructor(
-    public compare: CompareFunc<T> = function (a: T, b: T) {
+    public compare: CompareFunc<T, P> = function (a: P, b: P) {
       if (a === b) {
         return 0;
       }
@@ -16,7 +17,7 @@ export class Comparator<T> {
    * @param b 
    * @returns 
    */
-  public equals(a: T, b: T) {
+  public equals(a: P, b: P) {
     return this.compare(a, b) === 0;
   }
 
@@ -26,7 +27,7 @@ export class Comparator<T> {
    * @param b 
    * @returns 
    */
-  public lessThan(a: T, b: T) {
+  public lessThan(a: P, b: P) {
     return this.compare(a, b) < 0;
   }
 
@@ -36,7 +37,7 @@ export class Comparator<T> {
    * @param b 
    * @returns 
    */
-  public greaterThan(a: T, b: T) {
+  public greaterThan(a: P, b: P) {
     return this.compare(a, b) > 0;
   }
 
@@ -46,7 +47,7 @@ export class Comparator<T> {
    * @param b 
    * @returns 
    */
-  public lessThanOrEqual(a: T, b: T) {
+  public lessThanOrEqual(a: P, b: P) {
     return this.compare(a, b) <= 0;
   }
 
@@ -56,7 +57,7 @@ export class Comparator<T> {
    * @param b 
    * @returns 
    */
-  public greaterThanOrEqual(a: T, b: T) {
+  public greaterThanOrEqual(a: P, b: P) {
     return this.compare(a, b) >= 0;
   }
 
@@ -65,7 +66,7 @@ export class Comparator<T> {
    */
   public reverse() {
     const oldCompare = this.compare;
-    this.compare = function (a: T, b: T) {
+    this.compare = function (a: P, b: P) {
       return oldCompare(b, a);
     }
   }

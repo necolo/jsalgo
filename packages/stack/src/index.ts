@@ -1,4 +1,4 @@
-import LinkedList from "@jsalgo/linked-list";
+import LinkedList from '@jsalgo/linked-list';
 
 /**
  * Add to first, remove from first

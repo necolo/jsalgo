@@ -1,4 +1,5 @@
 import LinkedList from "@jsalgo/linked-list";
+import { Comparator, CompareFunc, PartialV } from '@jsalgo/utils';
 
 type NodeValue<T> = { key: string; value: T };
 
@@ -8,7 +9,7 @@ class HashTable<T> {
   constructor(
     public bucketCount = 32,
   ) {
-    const compareFunc = (a: NodeValue<T>, b: NodeValue<T>) => {
+    const compareFunc: CompareFunc<NodeValue<T>> = (a, b) => {
       if (a.key === b.key) {
         return 0;
       }
@@ -41,18 +42,18 @@ class HashTable<T> {
 
   public get(key: string) {
     const idx = this.hash(key);
-    return this.bucket[idx].find({ key, value: null });
+    return this.bucket[idx].find({ key })?.value;
   }
 
   public remove(key: string) {
     const idx = this.hash(key);
     const list = this.bucket[idx];
-    list.remove({ key, value: null });
+    list.remove({ key });
   }
 
   public has(key: string) {
     const idx = this.hash(key);
-    return this.bucket[idx].has({ key, value: null });
+    return this.bucket[idx].has({ key });
   }
 
   public toString() {
