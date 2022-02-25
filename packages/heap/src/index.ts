@@ -1,7 +1,7 @@
 import { Comparator, CompareFunc } from '@jsalgo/utils';
 
 export class Heap<T> {
-  public list: T[] = [];
+  private list: T[] = [];
   public comparator: Comparator<T>;
   constructor(compareFunc?: CompareFunc<T>) {
     this.comparator = new Comparator(compareFunc);
@@ -116,7 +116,27 @@ export class Heap<T> {
   /*                                    Find                                    */
   /* -------------------------------------------------------------------------- */
 
-  public indexOf(v: T, currIdx = 0): number {
+  public get(idx: number): T {
+    return this.list[idx];
+  }
+
+  public getRoot() {
+    return this.list[0];
+  }
+
+  public get length() {
+    return this.list.length;
+  }
+
+  public find(v: Partial<T>) {
+    const idx = this.indexOf(v);
+    if (idx >= 0) {
+      return this.list[idx];
+    }
+    return null;
+  }
+
+  public indexOf(v: Partial<T>, currIdx = 0): number {
     const compareValue = this.list[currIdx];
 
     if (this.comparator.equals(compareValue, v)) {
@@ -214,7 +234,7 @@ export class MinHeap<T> extends Heap<T> {
 
 export class MaxHeap<T> extends Heap<T> {
   constructor() {
-    const compareFunc = function (a: T, b: T) {
+    const compareFunc: CompareFunc<T> = function (a, b) {
       if (a === b) {
         return 0;
       }
@@ -223,3 +243,5 @@ export class MaxHeap<T> extends Heap<T> {
     super(compareFunc);
   }
 }
+
+export default Heap;

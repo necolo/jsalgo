@@ -1,15 +1,14 @@
 {
-  "name": "@jsalgo/queue",
+  "name": "@jsalgo/priority-queue",
   "version": "1.0.1",
-  "description": "Queue",
+  "description": "Priority queue",
   "keywords": [
-    "queue",
-    "typescript",
+    "data-structure",
     "javascript",
-    "data-structure"
+    "typescript"
   ],
   "author": "necolo <negko311@gmail.com>",
-  "homepage": "https://github.com/Necolo/jsalgo/packages/queue#readme",
+  "homepage": "https://github.com/Necolo/jsalgo/packages/priority-queue#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -43,6 +42,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@jsalgo/linked-list": "^1.0.1"
+    "@jsalgo/heap": "^1.0.1",
+    "@jsalgo/utils": "^1.0.1"
   }
 }
