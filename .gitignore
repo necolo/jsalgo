@@ -5,3 +5,4 @@ lerna-debug.log
 packages/*/lib
 package-lock.json
 yarn.lock
+package-lock.json
