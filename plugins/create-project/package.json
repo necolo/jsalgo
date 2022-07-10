@@ -6,7 +6,11 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@types/minimist": "^1.2.2",
     "@types/node": "^18.0.3"
+  },
+  "scripts": {
+    "start": "esrun src/index.ts"
   },
   "dependencies": {
     "minimist": "^1.2.6",
