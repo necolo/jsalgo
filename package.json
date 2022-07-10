@@ -15,7 +15,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "lerna": "^4.0.0",
     "tape": "^5.3.1"
   }
 }
