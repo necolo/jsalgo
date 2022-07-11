@@ -52,7 +52,7 @@ class CreateCommand {
         data: () => this._createReadme(),
       },
       {
-        dir: 'src',
+        dir: '__tests__',
         filename: 'test.ts',
         data: () => this._createTest(),
       },
@@ -86,7 +86,7 @@ class CreateCommand {
       main: 'lib/index.js',
       types: 'lib/index.d.ts',
       scripts: {
-        test: 'ts-node src/test.ts',
+        test: 'esrun __tests__/test.ts',
         build: 'tsc',
       },
       repository: {
@@ -131,6 +131,8 @@ class CreateCommand {
 
   private _createTest() {
     return `import tape from 'tape';
+import Project from '../src';
+
 tape('Test', t => {
   t.end();
 });`
