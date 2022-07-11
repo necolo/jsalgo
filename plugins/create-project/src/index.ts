@@ -127,7 +127,11 @@ class CreateCommand {
   }
 
   private _createReadme() {
-    return `# ${this._packageName}`;
+    return `# ${this._packageName}
+## Install
+\`\`\`
+npm install ${this._packageName}
+\`\`\``;
   }
 
   private _createTest() {

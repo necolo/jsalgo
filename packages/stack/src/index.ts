@@ -13,7 +13,7 @@ class Stack<T> {
     return this.list.isEmpty();
   }
 
-  public peek() {
+  public peak() {
     return this.list.head?.value || null;
   }
 

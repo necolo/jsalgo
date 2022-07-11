@@ -18,7 +18,7 @@ export class Queue<T> {
    * Read the element at the front of the queue without removing it.
    * @returns 
    */
-  public peek() {
+  public peak() {
     return this.linkedList.head?.value || null;
   }
 
