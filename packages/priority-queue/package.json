@@ -1,15 +1,19 @@
 {
   "name": "@jsalgo/priority-queue",
-  "version": "1.0.1",
-  "description": "Priority queue",
-  "author": "necolo <negko311@gmail.com>",
-  "homepage": "https://github.com/Necolo/jsalgo#readme",
-  "license": "MIT",
+  "version": "1.0.0",
+  "description": "The priority queue",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "scripts": {
+    "test": "esrun __tests__/test.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Necolo/jsalgo.git"
+  },
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
@@ -19,30 +23,19 @@
     "access": "public"
   },
   "keywords": [
-    "priority",
-    "heap",
-    "queue",
-    "list",
-    "data",
-    "structure",
-    "javascript",
     "typescript"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Necolo/jsalgo.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "tsc"
-  },
-  "bugs": {
-    "url": "https://github.com/Necolo/jsalgo/issues"
-  },
+  "author": "necolo <negko311@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Necolo/jsalgo/packages/priority-queue#readme",
   "devDependencies": {
     "@types/tape": "^4.13.2",
     "tape": "^5.5.0",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@jsalgo/heap": "workspace:^1.0.1",
+    "@jsalgo/utils": "workspace:^1.0.1"
   }
 }
