@@ -4,7 +4,7 @@
   "author": "necolo <negko311@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "publish": "lerna run build && lerna publish"
+    "create": "pnpm --filter create-project run create"
   },
   "repository": {
     "type": "git",

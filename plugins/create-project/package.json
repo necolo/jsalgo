@@ -10,7 +10,7 @@
     "@types/node": "^18.0.3"
   },
   "scripts": {
-    "start": "esrun src/index.ts"
+    "create": "esrun src/index.ts"
   },
   "dependencies": {
     "minimist": "^1.2.6",

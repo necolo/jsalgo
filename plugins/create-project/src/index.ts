@@ -50,6 +50,16 @@ class CreateCommand {
       {
         filename: 'README.md',
         data: () => this._createReadme(),
+      },
+      {
+        dir: 'src',
+        filename: 'test.ts',
+        data: () => this._createTest(),
+      },
+      {
+        dir: 'src',
+        filename: 'index.ts',
+        data: () => this._createIndex(),
       }
     ];
 
@@ -58,7 +68,11 @@ class CreateCommand {
 
     // create files
     for (const file of files) {
-      const filename = path.join(targetDir, file.filename);
+      const dir = file.dir ? path.join(targetDir, file.dir) : '';
+      if (dir && !fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+      }
+      const filename = path.join(dir || targetDir, file.filename);
       fs.appendFileSync(filename, file.data(), 'utf8');
     }
   }
@@ -116,11 +130,14 @@ class CreateCommand {
   }
 
   private _createTest() {
-
+    return `import tape from 'tape';
+tape('Test', t => {
+  t.end();
+});`
   }
 
   private _createIndex() {
-
+    return '// write your code here';
   }
 
   private get _packageName() {
@@ -132,7 +149,6 @@ class CreateCommand {
 
 function run() {
   const argv = minimist(process.argv.slice(2));
-  console.log(argv);
   if (argv.h || argv.help) {
     console.log(`Version ${VERSION}
 Usage:  ${COMMAND} [command] [package-name]
