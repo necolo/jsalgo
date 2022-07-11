@@ -122,6 +122,7 @@ class CreateCommand {
         'outDir': './lib'
       },
       include: ['./src'],
+      exclude: ['./__tests__'],
     }, null, 2);
   }
 
