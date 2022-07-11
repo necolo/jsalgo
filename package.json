@@ -1,8 +1,9 @@
 {
-  "name": "jsalgo",
+  "name": "@jsalgo/root",
   "version": "1.0.1",
   "author": "necolo <negko311@gmail.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "create": "pnpm --filter create-project run create"
   },
@@ -13,8 +14,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
-  },
-  "devDependencies": {
-    "tape": "^5.3.1"
   }
 }

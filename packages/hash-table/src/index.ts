@@ -1,12 +1,22 @@
-import LinkedList from "../linked-list";
+import LinkedList from "@jsalgo/linked-list";
+import { Comparator, CompareFunc, PartialV } from '@jsalgo/utils';
+
+type NodeValue<T> = { key: string; value: T };
 
 class HashTable<T> {
-  public bucket: LinkedList<{ key: string, value: T }>[];
+  public bucket: LinkedList<NodeValue<T>>[];
 
   constructor(
     public bucketCount = 32,
   ) {
-    this.bucket = new Array(bucketCount).fill(null).map(() => new LinkedList());
+    const compareFunc: CompareFunc<NodeValue<T>> = (a, b) => {
+      if (a.key === b.key) {
+        return 0;
+      }
+      return -1;
+    };
+
+    this.bucket = new Array(bucketCount).fill(null).map(() => new LinkedList(compareFunc));
   }
 
   /**
@@ -32,24 +42,18 @@ class HashTable<T> {
 
   public get(key: string) {
     const idx = this.hash(key);
-    const node = this.bucket[idx].find(data => data.key === key);
-    if (node) {
-      return node.value.value;
-    } else {
-      return null;
-    }
+    return this.bucket[idx].find({ key })?.value;
   }
 
   public remove(key: string) {
     const idx = this.hash(key);
     const list = this.bucket[idx];
-    const targetNode = list.find(data => data.key === key);
-    targetNode && list.remove(targetNode.value);
+    list.remove({ key });
   }
 
   public has(key: string) {
     const idx = this.hash(key);
-    return this.bucket[idx].has(data => data.key === key);
+    return this.bucket[idx].has({ key });
   }
 
   public toString() {

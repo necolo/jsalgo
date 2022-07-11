@@ -1,14 +1,15 @@
 {
-  "name": "@jsalgo/heap",
+  "name": "@jsalgo/stack",
   "version": "1.0.1",
-  "description": "Heap",
+  "description": "Stack data structure",
   "keywords": [
-    "heap",
+    "stack",
+    "typescript",
     "javascript",
-    "typescript"
+    "data-structure"
   ],
   "author": "necolo <negko311@gmail.com>",
-  "homepage": "https://github.com/Necolo/jsalgo#readme",
+  "homepage": "https://github.com/Necolo/jsalgo/packages/stack#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,27 +20,30 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Necolo/jsalgo.git"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Necolo/jsalgo.git"
+  },
   "scripts": {
-    "build": "tsc",
+    "test": "ts-node __tests__/test.ts",
     "prepare": "npm run build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc"
   },
   "bugs": {
     "url": "https://github.com/Necolo/jsalgo/issues"
   },
   "devDependencies": {
-    "tape": "^5.5.2",
-    "tslib": "^2.3.1"
+    "@types/tape": "^4.13.2",
+    "tape": "^5.5.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@jsalgo/utils": "^1.0.1"
+    "@jsalgo/linked-list": "^1.0.1",
+    "tape": "^5.5.2"
   }
 }

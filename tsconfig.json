@@ -27,10 +27,5 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "outDir": "lib"
-  },
-  "include": ["src", "packages/utils/src"],
-  "exclude": [
-    "build",
-    "node_modules"
-  ]
+  }
 }

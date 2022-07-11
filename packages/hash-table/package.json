@@ -1,14 +1,15 @@
 {
-  "name": "@jsalgo/utils",
+  "name": "@jsalgo/hash-table",
   "version": "1.0.1",
-  "description": "utils for algorithms",
+  "description": "Hash table",
   "keywords": [
+    "hash-table",
     "javascript",
     "typescript",
-    "algorithms"
+    "data-structure"
   ],
   "author": "necolo <negko311@gmail.com>",
-  "homepage": "https://github.com/Necolo/jsalgo",
+  "homepage": "https://github.com/Necolo/jsalgo#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -19,24 +20,28 @@
   "files": [
     "lib"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Necolo/jsalgo.git"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Necolo/jsalgo.git"
+  },
   "scripts": {
-    "build": "tsc",
+    "test": "ts-node __tests__/test.ts",
     "prepare": "npm run build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc"
   },
   "bugs": {
     "url": "https://github.com/Necolo/jsalgo/issues"
   },
+  "dependencies": {
+    "@jsalgo/linked-list": "^1.0.2",
+    "@jsalgo/utils": "^1.0.1"
+  },
   "devDependencies": {
     "tape": "^5.5.2",
-    "tslib": "^2.3.1"
+    "typescript": "^4.5.5"
   }
 }

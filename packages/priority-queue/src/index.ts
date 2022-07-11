@@ -23,7 +23,7 @@ export class PriorityQueue<T> {
    * Poll the highest priority value
    * @returns value
    */
-  poll() {
+  peak() {
     return this._heap.poll()?.value;
   }
 
