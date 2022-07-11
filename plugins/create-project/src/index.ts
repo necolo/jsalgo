@@ -87,6 +87,7 @@ class CreateCommand {
       types: 'lib/index.d.ts',
       scripts: {
         test: 'esrun __tests__/test.ts',
+        prepare: 'npm run build',
         build: 'tsc',
       },
       repository: {
@@ -100,6 +101,9 @@ class CreateCommand {
       publishConfig: {
         registry: 'https://registry.npmjs.org',
         access: 'public',
+      },
+      bugs: {
+        url: 'https://github.com/Necolo/jsalgo/issues'
       },
       keywords: ['typescript'],
       author: 'necolo <negko311@gmail.com>',
