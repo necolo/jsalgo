@@ -3,7 +3,7 @@ import { Heap } from '@jsalgo/heap';
 class Node<T> {
   constructor(
     public value: T,
-    public priority: number,
+    public priority = -Infinity,
   ) {}
 }
 
@@ -23,8 +23,16 @@ export class PriorityQueue<T> {
    * Poll the highest priority value
    * @returns value
    */
-  peak() {
+  poll() {
     return this._heap.poll()?.value;
+  }
+
+  /**
+   * Get the highest priority value
+   * @returns value
+   */
+  peak() {
+    return this._heap.getRoot()?.value;
   }
 
   /**

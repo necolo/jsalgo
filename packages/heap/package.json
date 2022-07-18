@@ -1,6 +1,6 @@
 {
   "name": "@jsalgo/heap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Heap",
   "keywords": [
     "heap",
@@ -30,7 +30,7 @@
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "esrun __tests__/test.ts"
   },
   "bugs": {
     "url": "https://github.com/Necolo/jsalgo/issues"
