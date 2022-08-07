@@ -1,5 +1,6 @@
 import tape from 'tape';
 import Trie from '../src';
+import { ptree } from '@ptree/core';
 
 tape('Test', t => {
   const trie = new Trie([
@@ -10,6 +11,11 @@ tape('Test', t => {
     'A',
     'inn',
   ]);
+
+  console.log(ptree(trie.root, {
+    formatter: n => n.prefix,
+    getChildren: n => Object.values(n.children),
+  }), '\n');
 
   t.deepEqual(trie.find('te'), ['tea', 'ted', 'ten']);
   t.deepEqual(trie.find('t'), ['to', 'tea', 'ted', 'ten']);
