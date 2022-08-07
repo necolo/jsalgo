@@ -85,6 +85,7 @@ class CreateCommand {
       description: args.description,
       main: 'lib/index.js',
       types: 'lib/index.d.ts',
+      source: 'src/index.ts',
       scripts: {
         test: 'esrun __tests__/test.ts',
         prepare: 'npm run build',
