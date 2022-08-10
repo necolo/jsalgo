@@ -35,7 +35,6 @@ export class BinarySearchTree {
     if (!node) return;
     if (node.left && node.right) {
       this._change(parent, node, node.left);
-      const newParentNode = parent || this.root;
       const inherit = this._findNodeFrom(value, parent || this.root, node.left);
       if (!inherit.parent || inherit.node) {
         throw new Error('Something is wrong');
