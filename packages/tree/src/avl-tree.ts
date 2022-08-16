@@ -44,9 +44,9 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
   /* -------------------------------------------------------------------------- */
 
   protected _addNode(node: AVLNode<T>) {
-    const newNode = super._addNode(node);
-    this._balance(newNode?.parent || null);
-    return newNode;
+    const added = super._addNode(node);
+    added && this._balance(node.parent);
+    return added;
   }
 
   protected _removeNode(node: AVLNode<T>) {

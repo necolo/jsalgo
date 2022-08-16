@@ -119,16 +119,19 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   /*                               native methods                               */
   /* -------------------------------------------------------------------------- */
 
-  protected _addNode(newNode: N) {
-    const parent = this._findClosestNode(newNode.value);
+  protected _addNode(node: N) {
+    const parent = this._findClosestNode(node.value);
     if (!parent) {
-      this._setRoot(newNode);
-    } else if (parent.value === newNode.value) {
-      return null;
-    } else {
-      parent.addChild(newNode);
+      this._setRoot(node);
+      return true;
     }
-    return newNode;
+
+    if (this.comparator.equals(node.value, parent.value)) {
+      return false;
+    }
+
+    parent.addChild(node);
+    return true;
   }
 
   /**
