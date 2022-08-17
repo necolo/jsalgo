@@ -34,8 +34,7 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
 
   remove(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
-      const node = super.findNode(values[i]);
-      node && this._removeNode(node);
+      this._remove(values[i]);
     }
   }
 
@@ -49,8 +48,8 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
     return added;
   }
 
-  protected _removeNode(node: AVLNode<T>) {
-    const affectedNode = super._removeNode(node);
+  protected _remove(value: T) {
+    const affectedNode = super._remove(value);
     this._balance(affectedNode);
     return affectedNode;
   }

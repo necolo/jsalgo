@@ -72,8 +72,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
 
   remove(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
-      const node = this.findNode(values[i]);
-      node && this._removeNode(node);
+      this.remove(values[i]);
     }
   }
 
@@ -139,7 +138,9 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
    * @param node 
    * @returns the moved node's parent
    */
-  protected _removeNode(node: N) {
+  protected _remove(value: T) {
+    const node = this.findNode(value);
+    if (!node) return null;
     if (node.left && node.right) {
       // find largest node that is smallest than value
       const replaceNode = this._findLargestNode(node.left);

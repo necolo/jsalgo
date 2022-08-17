@@ -56,6 +56,12 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
     }
   }
 
+  remove(...values: T[]) {
+    for (let i = 0; i < values.length; i++) {
+      this._remove(values[i]);
+    }
+  }
+
   protected _addNode(node: RBNode<T>) {
     const added = super._addNode(node);
     if (!added) return false;
@@ -136,6 +142,36 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
   }
 
   // Delete cases
+  protected _remove(value: T) {
+    const node = this.findNode(value);
+    if (!node) return;
+    if (!node.parent) {
+      if (node.left && node.right) {
+        // If N has two non-NIL children, an additional navigation to either the maximum element in its left subtree (which is the in-order predecessor) or the minimum element in its right subtree (which is the in-order successor)
+        // finds a node with no other node in between (as shown here). 
+        // This "replacement node", say R, has
+        // – as the maximal or minimal element of a subtree 
+        // – at most one non-NIL child. In order to keep the software completely independent of the node structure as defined by the user, 
+        // all red–black tree data related with N and R, 
+        // i.e. the color of and the pointers to and from the two nodes, are exchanged. 
+        // (The modified red–black tree is the same as before with the exception of the reversed order between N and R, an issue which immediately is resolved by the removal of N.) 
+        // Now N has at most one non-NIL child.
+        return;
+      }
+      if (node.left || node.right) {
+        /**
+         * If N has exactly one non-NIL child, it must be a red child, because if it were a black one then requirement 4 would force a second black non-NIL child.
+         * If N is a red node, it cannot have a non-NIL child, because this would have to be black by requirement 3. Furthermore, it cannot have exactly one black child as argued just above. As a consequence, the red node N is without any child and can simply be removed.
+         * If N is a black node, it may have a red child or no non-NIL child at all. If N has a red child, it is simply replaced with this child after painting the latter black.
+         */
+        return;
+      }
+      this.root = null;
+      return;
+    }
+
+    // todo: Removal of a black non-root leaf
+  }
 
   private _D1() {
 
