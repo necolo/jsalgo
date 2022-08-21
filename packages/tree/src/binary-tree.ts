@@ -72,7 +72,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
 
   remove(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
-      this.remove(values[i]);
+      this._remove(values[i]);
     }
   }
 
@@ -82,6 +82,14 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
       return node;
     }
     return null;
+  }
+
+  find(value: T) {
+    return this.findNode(value)?.value;
+  }
+
+  findClosest(value: T) {
+    return this._findClosestNode(value)?.value;
   }
 
   contains(value: T) {
@@ -139,62 +147,39 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
    * @returns the moved node's parent
    */
   protected _remove(value: T) {
-    const node = this.findNode(value);
+    let node = this.findNode(value);
     if (!node) return null;
+    if (!node.parent) {
+      if (!node.left && !node.right) {
+        this.root = null;
+        return null;
+      }
+      if (!(node.left && node.right)) {
+        const child = node.left || node.right;
+        this._setRoot(child!);
+        return child;
+      }
+    }
+
     if (node.left && node.right) {
-      // find largest node that is smallest than value
-      const replaceNode = this._findLargestNode(node.left);
-      const replaceNodeParent = replaceNode.parent;
-      if (replaceNode === node.left) {
-        replaceNode.setRight(node.right);
-        if (node.parent) {
-          node.parent.setLeft(replaceNode);
-        } else {
-          this._setRoot(replaceNode);
-        }
-        return replaceNode;
-      }
-      
-      if (replaceNode.left) {
-        replaceNode.parent!.setRight(replaceNode.left);
-      } else {
-        replaceNode.parent!.removeChild(replaceNode);
-      }
-      replaceNode.setLeft(node.left);
-      replaceNode.setRight(node.right);
-      if (!node.parent) {
-        this._setRoot(replaceNode);
-      } else {
-        node.parent.setChild(node, replaceNode);
-      }
-      return replaceNodeParent;
+      const r = this._findLargestNode(node.left);
+      node.value = r.value;
+      node = r;
     }
 
     if (node.left) {
-      if (!node.parent) {
-        this._setRoot(node.left);
-      } else {
-        node.parent.setChild(node, node.left);
-      }
+      node.parent!.setChild(node, node.left);
       return node.parent;
     }
 
     if (node.right) {
-      if (!node.parent) {
-        this._setRoot(node.right);
-      } else {
-        node.parent.setChild(node, node.right);
-      }
+      node.parent!.setChild(node, node.right);
       return node.parent;
     }
 
-    if (!node.parent) {
-      this.root = null;
-      return null;
-    }
-
-    node.parent.removeChild(node);
-    return node.parent;
+    const parent = node.parent;
+    parent!.removeChild(node);
+    return parent;
   }
 
   protected _findClosestNode(value: T, startNode = this.root) {

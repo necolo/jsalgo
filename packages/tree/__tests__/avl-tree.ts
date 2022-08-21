@@ -8,7 +8,7 @@ function fibonacci(n: number) {
 }
 
 interface Tools {
-  checkBalance: () => void;
+  checkBalance: (msg?: string) => void;
 }
 
 function test(
@@ -22,10 +22,10 @@ function test(
     const tools = getHelpers(t);
     const tree = new AVLTree();
 
-    function checkBalance() {
+    function checkBalance(msg = '') {
       const size = tree.size();
       const height = tree.height();
-      t.ok(size >= fibonacci(height) && size < (Math.pow(2, height + 1) -1), `The tree is balance with size ${size} height ${height}`);
+      t.ok(size >= fibonacci(height) && size < (Math.pow(2, height + 1) -1), `${msg}: The tree is balance with size ${size} height ${height}`);
     }
 
     tree.add(...initValues);
@@ -143,10 +143,13 @@ test('Remove a deep leaf', [20, 15, 25, 10, 17, 22, 30, 27, 5, 35, 40], (tree, {
   lr(tree.root!.left, 5, 15);
 });
 
-test('Remove root', [20, 15, 25, 10, 17, 22, 30, 27, 5, 35, 40], (tree, { is, lr, checkBalance }) => {
+test('Remove root', [], (tree, { is, lr, checkBalance }) => {
   const nums = [20, 15, 25, 10, 17, 22, 30, 27, 5, 35, 40];
+  tree.add(...nums);
   for (let i = 0; i < nums.length; i++) {
     tree.remove(nums[i]);
-    checkBalance();
+    checkBalance(`Removing ${nums[i]}`);
   }
 });
+
+export default tape;

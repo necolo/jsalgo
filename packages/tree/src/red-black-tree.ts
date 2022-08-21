@@ -24,7 +24,7 @@ export class RBNode<T = number> extends TreeNode<T> {
     return this.parent?.parent || null;
   }
 
-  get nephews() {
+  get nephews(): [this | null, this | null] {
     let closeNephew: this | null = null;
     let distantNephew: this | null = null;
     if (this.parent) {
@@ -71,124 +71,179 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
       return true;
     }
 
-    if (node.parent.color === BLACK) {
-      return true;
-    }
-
-    if (!node.grandParent) {
-      node.parent.color = BLACK;
-      return true;
-    }
-
-    if (!node.uncle || node.uncle.color === BLACK) {
-      let n = node;
-      if (node === node.parent.right && node.parent === node.grandParent.left) {
-        n = node.parent;
-        this._rotateLeft(node.parent);
-      } else if (node === node.parent.left && node.parent === node.grandParent.right) {
-        n = node.parent;
-        this._rotateRight(node.parent);
-      }
-
-      // case 6
-      const { parent, grandParent } = n;
-      if (parent === grandParent.left) {
-        this._rotateRight(n.grandParent);
-      } else {
-        this._rotateLeft(n.grandParent);
-      }
-      parent!.color = BLACK;
-      grandParent.color = RED;
-
-      return true;
-    }
-
-    // case 2 (Parent and Uncle are both red)
     let n = node;
-    while (n?.parent) {
-      n.parent.color = BLACK;
-      const uncle = n.uncle;
-      uncle && (uncle.color = BLACK);
-      const grandParent = n.grandParent;
-      grandParent && (grandParent.color = RED);
-      n = grandParent;
+    while (n) {
+      let p = n.parent;
+      if (!p) {
+        n.color = BLACK;
+        break;
+      }
+      if (p.color === BLACK) {
+        break;
+      }
+      let g = n.grandParent;
+      if (!g) {
+        // case 4
+        p.color = BLACK;
+        break;
+      }
+      let u = n.uncle;
+      if (u?.color === RED) {
+        // case 2
+        p.color = BLACK;
+        u.color = BLACK;
+        g.color = RED;
+        n = g;
+        continue;
+      }
+      if (n === p.right && p === g.left) {
+        this._rotateLeft(n);
+        n = n.left!;
+      } else if (n === p.left && p === g.right) {
+        this._rotateRight(n);
+        n = n.right!;
+      }
+      n.parent!.color = BLACK;
+      n.grandParent!.color = RED;
+      if (n === n.parent!.left && n.parent === n.grandParent.left) {
+        this._rotateRight(n.parent!);
+      } else {
+        this._rotateLeft(n.parent!);
+      }
     }
-
     return true;
   }
 
-  private _rotateLeft(node: RBNode<T>) {
-    const { right } = node;
-    if (!right) return;
-    if (node.parent) {
-      node.parent.setChild(node, right);
-    } else {
-      this._setRoot(right);
+  private _rotateLeft(n: RBNode<T>) {
+    if (!n.parent) {
+      this._setRoot(n);
+      return;
     }
-    node.setRight(right.left);
-    right.setLeft(node);
+    let g = n.grandParent;
+    let p = n.parent;
+    let left = n.left;
+    p.setRight(left);
+    n.setLeft(p);
+    if (this.root === p) {
+      this._setRoot(n);
+    }
+    g && g.setChild(p, n);
   }
 
-  private _rotateRight(node: RBNode<T>) {
-    const { left } = node;
-    if (!left) return;
-    if (node.parent) {
-      node.parent.setChild(node, left);
-    } else {
-      this._setRoot(left);
+  private _rotateRight(n: RBNode<T>) {
+    let g = n.grandParent;
+    let p = n.parent;
+    if (!p) return;
+    let right = n.right;
+    p.setLeft(right);
+    n.setRight(p);
+    if (p === this.root) {
+      this._setRoot(n);
     }
-    node.setLeft(left.right);
-    left.setRight(node);
+    g && g.setChild(p, n);
   }
 
   // Delete cases
   protected _remove(value: T) {
-    const node = this.findNode(value);
-    if (!node) return;
-    if (!node.parent) {
-      if (node.left && node.right) {
-        // If N has two non-NIL children, an additional navigation to either the maximum element in its left subtree (which is the in-order predecessor) or the minimum element in its right subtree (which is the in-order successor)
-        // finds a node with no other node in between (as shown here). 
-        // This "replacement node", say R, has
-        // – as the maximal or minimal element of a subtree 
-        // – at most one non-NIL child. In order to keep the software completely independent of the node structure as defined by the user, 
-        // all red–black tree data related with N and R, 
-        // i.e. the color of and the pointers to and from the two nodes, are exchanged. 
-        // (The modified red–black tree is the same as before with the exception of the reversed order between N and R, an issue which immediately is resolved by the removal of N.) 
-        // Now N has at most one non-NIL child.
-        return;
+    let n = this.findNode(value);
+    if (!n) return null;
+    if (!n.parent) {
+      if (!n.left && !n.right) {
+        this.root = null;
+        return null;
       }
-      if (node.left || node.right) {
-        /**
-         * If N has exactly one non-NIL child, it must be a red child, because if it were a black one then requirement 4 would force a second black non-NIL child.
-         * If N is a red node, it cannot have a non-NIL child, because this would have to be black by requirement 3. Furthermore, it cannot have exactly one black child as argued just above. As a consequence, the red node N is without any child and can simply be removed.
-         * If N is a black node, it may have a red child or no non-NIL child at all. If N has a red child, it is simply replaced with this child after painting the latter black.
-         */
-        return;
+      if (!(n.left && n.right)) {
+        const child = n.left || n.right;
+        this._setRoot(child!);
+        return child;
       }
-      this.root = null;
-      return;
     }
 
-    // todo: Removal of a black non-root leaf
-  }
+    if (n.left && n.right) {
+      const r = this._findLargestNode(n.left);
+      n.value = r.value;
+      n = r;
+    }
 
-  private _D1() {
+    const parent = n.parent!;
+    if (n.left) {
+      parent.setChild(n, n.left);
+      if (n.color === BLACK) {
+        n.left.color = n.color;
+      }
+      return n.parent;
+    }
 
-  }
-  private _D2() {
-    
-  }
-  private _D3() {
-    
-  }
-  private _D4() {
-    
-  }
-  private _D5() {
-    
-  }
-  private _D6() {
-    
+    if (n.right) {
+      parent.setChild(n, n.right);
+      if (n.color === BLACK) {
+        n.right.color = n.color;
+      }
+      return n.parent;
+    }
+
+    const node = n;
+    if (n.color === BLACK) {
+      this.debug && console.log('start black leaf node');
+      while (n?.parent) {
+        let p = n.parent;
+        let s = n.sibling;
+
+        // sibling is red
+        if (s.color === RED) {
+          this.debug && console.log('->>');
+          p.color = RED;
+          s.color = BLACK;
+          if (n === p.left) {
+            this._rotateLeft(s);
+          } else {
+            this._rotateRight(s);
+          }
+          p = n.parent;
+          s = n.sibling;
+        }
+
+        let [c, d] = n.nephews;
+
+        // s, d = black, c = red
+        if (c?.color === RED && (!d || d.color === BLACK)) {
+          s.color = RED;
+          c.color = BLACK;
+          if (n === p.left) {
+            this._rotateRight(c);
+          } else {
+            this._rotateLeft(c);
+          }
+          s = n.sibling;
+          [c, d] = n.nephews;
+        }
+
+        // s = black, d = red
+        if (d?.color === RED) {
+          s.color = p.color;
+          p.color = BLACK;
+          d.color = BLACK;
+          if (n === p.left) {
+            this._rotateLeft(s);
+          } else {
+            this._rotateRight(s);
+          }
+          break;
+        }
+
+        // s, c, d = black, p = red
+        if (p.color === RED) {
+          s.color = RED;
+          p.color = BLACK;
+          break;
+        }
+
+        s.color = RED;
+        n = p;
+      }
+    }
+
+    parent.removeChild(node);
+    return parent;
   }
 }

@@ -44,7 +44,7 @@ function printTree(tree: RedBlackTree<any>, text = '') {
 } 
 
 interface Tools {
-  check: () => void;
+  check: (msg?: string) => void;
 }
 
 function test(
@@ -57,11 +57,11 @@ function test(
     const tools = getHelpers(t);
     const tree = new RedBlackTree();
 
-    function check() {
+    function check(msg = '') {
       const { root } = tree;
       if (!root) return;
-      t.ok(!redParentChild(root), 'A red node does not have a red child');
-      t.ok(blackNodes(root) > 0, 'Every paths has same number of black nodes');
+      t.ok(!redParentChild(root), 'A red node does not have a red child: ' + msg);
+      t.ok(blackNodes(root) > 0, 'Every paths has same number of black nodes: ' + msg);
     }
 
     task(tree, { ...tools, check });
@@ -92,8 +92,91 @@ test('Insertion', (tree, { check }) => {
 test('Insertion with case 56', (tree, { check }) => {
   tree.add(40, 20, 50, 10, 30, 5);
   check();
-
-  tree.debug = true;
   tree.add(7);
   check();
 });
+
+test('Remove a root node with no children', (tree, { check, nlr }) => {
+  tree.remove(1);
+  tree.add(40);
+  tree.remove(40);
+  nlr(tree.root, null, null, null);
+});
+
+test('Remove a root node with only one child', (tree, { check, nlr }) => {
+  tree.add(40, 60);
+  tree.remove(40);
+  nlr(tree.root, 60, null, null)
+  tree.add(20);
+  tree.remove(60);
+  nlr(tree.root, 20, null, null);
+});
+
+test('Remove a root with two leaf children', (tree, { check, nlr }) => {
+  tree.add(40, 20, 60);
+  tree.remove(40);
+  nlr(tree.root, 20, null, 60);
+  check();
+});
+
+test('Remove a red leaf node', (tree, { check, nlr }) => {
+  tree.add(10, 5, 30, -5, 7, 20, 38, 32, 41);
+  tree.add(35);
+  tree.remove(35);
+  check();
+});
+
+test('Remove a black node with one child', (tree, { check, nlr }) => {
+  tree.add(10, 5, 30, -5, 7, 20, 38, 32, 41, 35);
+  tree.remove(32);
+  nlr(tree.root?.right!, 38, 35, 41);
+  check();
+});
+
+test('Remove a black leaf node with case 4: parent is red and sibling is black', (tree, { check, nlr }) => {
+  tree.add(10, -10, 30, 20, 38, 21, 39);
+  tree.remove(21, 39);
+  check();
+});
+
+test('Remove a black leaf node with case 5: only close nephew is red', (tree, { check }) => {
+  tree.add(40, 20, 50, 7, 30, 10);
+  tree.remove(30);
+  check();
+
+  tree.debug = true;
+  tree.remove(50);
+  check('Remove a black leaf node with case 3: sibling is red');
+}, true);
+
+test('Remove a black leaf node with case 6: nephews are red', (tree, { check }) => {
+  tree.add(40, 20, 50, 7, 30, 5, 10);
+  tree.remove(30);
+  check();
+});
+
+test('Random test', (tree, { check }) => {
+  const numbers: number[] = [];
+  for (let i = 0; i < 20; i++) {
+    numbers.push(i);
+  }
+  shuffleArray(numbers);
+  for (let i = 0; i < numbers.length; i++) {
+    tree.add(numbers[i]);
+    check();
+  }
+  shuffleArray(numbers);
+  for (let i = 0; i < numbers.length; i++) {
+    tree.remove(numbers[i]);
+    check();
+  }
+});
+
+function shuffleArray(array: unknown[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}

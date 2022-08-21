@@ -16,32 +16,44 @@ export function printTree(tree: BinaryTree<any>, text = '') {
 } 
 
 export function getHelpers(t) {
-  function is(n: TreeNode | null, v: number) {
-    if (!n) {
-      t.fail(`Compare ${v} failed, node is not exist`);
-      return;
+  function is(n: TreeNode | null, v: number | null, msg?: string) {
+    if (!n && v !== null) {
+      t.fail(`${msg || ''}: node is not exist`);
+      return false;
     }
-    t.equal(n!.value, v);
+    if (!n) {
+      t.equal(n, v, msg);
+    } else {
+      t.equal(n.value, v, msg);
+    }
+    return true;
   }
 
   return {
     is,
-
-    lr(n: TreeNode | null, l: number, r: number) {
+    nlr(n: TreeNode | null, v: number | null, l: number | null, r: number | null) {
+      if (!is(n, v)) {
+        return;
+      }
+      if (!n) return;
+      if (!is(n.left, l, `Compare ${n.value}'s left node`)) {
+        return;
+      }
+      if (!is(n.right, r, `Compare ${n.value}'s right node`)) {
+        return;
+      }
+    },
+    lr(n: TreeNode | null, l: number | null, r: number | null) {
       if (!n) {
         t.fail(`Compare l: ${l}, r: ${r} failed, node is not exist`);
         return;
       }
-      if (l && !n.left) {
-        t.fail(`Left node is not exist in ${n.value}`);
+      if (!is(n.left, l, `Compare ${n.value}'s left node`)) {
         return;
       }
-      if (r && !n.right) {
-        t.fail(`Right node is not exist in ${n.value}`);
+      if (!is(n.right, r, `Compare ${n.value}'s right node`)) {
         return;
       }
-      is(n.left, l);
-      is(n.right, r);
     },
   };
 }
