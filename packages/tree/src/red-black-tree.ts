@@ -67,7 +67,6 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
     if (!added) return false;
 
     if (!node.parent) {
-      // node is the root
       return true;
     }
 
@@ -83,13 +82,11 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
       }
       let g = n.grandParent;
       if (!g) {
-        // case 4
         p.color = BLACK;
         break;
       }
       let u = n.uncle;
       if (u?.color === RED) {
-        // case 2
         p.color = BLACK;
         u.color = BLACK;
         g.color = RED;
@@ -184,14 +181,12 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
 
     const node = n;
     if (n.color === BLACK) {
-      this.debug && console.log('start black leaf node');
       while (n?.parent) {
         let p = n.parent;
         let s = n.sibling;
 
         // sibling is red
         if (s.color === RED) {
-          this.debug && console.log('->>');
           p.color = RED;
           s.color = BLACK;
           if (n === p.left) {
