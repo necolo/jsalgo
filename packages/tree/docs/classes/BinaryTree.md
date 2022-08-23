@@ -32,12 +32,6 @@
 
 ### Methods
 
-- [\_addNode](BinaryTree.md#_addnode)
-- [\_findClosestNode](BinaryTree.md#_findclosestnode)
-- [\_findLargestNode](BinaryTree.md#_findlargestnode)
-- [\_findSmallestNode](BinaryTree.md#_findsmallestnode)
-- [\_remove](BinaryTree.md#_remove)
-- [\_setRoot](BinaryTree.md#_setroot)
 - [clear](BinaryTree.md#clear)
 - [contains](BinaryTree.md#contains)
 - [find](BinaryTree.md#find)
@@ -72,7 +66,7 @@ Create the BinaryTree
 
 #### Defined in
 
-[binary-tree.ts:73](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L73)
+[binary-tree.ts:73](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L73)
 
 ## Properties
 
@@ -82,7 +76,7 @@ Create the BinaryTree
 
 #### Defined in
 
-[binary-tree.ts:66](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L66)
+[binary-tree.ts:66](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L66)
 
 ___
 
@@ -92,130 +86,9 @@ ___
 
 #### Defined in
 
-[binary-tree.ts:67](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L67)
+[binary-tree.ts:67](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L67)
 
 ## Methods
-
-### \_addNode
-
-▸ `Protected` **_addNode**(`node`): `boolean`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `N` |
-
-#### Returns
-
-`boolean`
-
-#### Defined in
-
-[binary-tree.ts:177](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L177)
-
-___
-
-### \_findClosestNode
-
-▸ `Protected` **_findClosestNode**(`value`, `startNode?`): ``null`` \| `N`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `T` |
-| `startNode` | ``null`` \| `N` |
-
-#### Returns
-
-``null`` \| `N`
-
-#### Defined in
-
-[binary-tree.ts:231](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L231)
-
-___
-
-### \_findLargestNode
-
-▸ `Protected` **_findLargestNode**(`node`): `N`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `N` |
-
-#### Returns
-
-`N`
-
-#### Defined in
-
-[binary-tree.ts:266](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L266)
-
-___
-
-### \_findSmallestNode
-
-▸ `Protected` **_findSmallestNode**(`node`): `N`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `N` |
-
-#### Returns
-
-`N`
-
-#### Defined in
-
-[binary-tree.ts:257](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L257)
-
-___
-
-### \_remove
-
-▸ `Protected` **_remove**(`value`): ``null`` \| `N`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `value` | `T` |
-
-#### Returns
-
-``null`` \| `N`
-
-#### Defined in
-
-[binary-tree.ts:193](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L193)
-
-___
-
-### \_setRoot
-
-▸ `Protected` **_setRoot**(`node`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `node` | `N` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[binary-tree.ts:251](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L251)
-
-___
 
 ### clear
 
@@ -229,7 +102,7 @@ Clear the tree
 
 #### Defined in
 
-[binary-tree.ts:152](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L152)
+[binary-tree.ts:152](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L152)
 
 ___
 
@@ -253,7 +126,7 @@ T
 
 #### Defined in
 
-[binary-tree.ts:123](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L123)
+[binary-tree.ts:123](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L123)
 
 ___
 
@@ -277,7 +150,7 @@ T
 
 #### Defined in
 
-[binary-tree.ts:105](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L105)
+[binary-tree.ts:105](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L105)
 
 ___
 
@@ -301,7 +174,7 @@ T
 
 #### Defined in
 
-[binary-tree.ts:114](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L114)
+[binary-tree.ts:114](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L114)
 
 ___
 
@@ -319,7 +192,7 @@ T | undefined
 
 #### Defined in
 
-[binary-tree.ts:142](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L142)
+[binary-tree.ts:142](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L142)
 
 ___
 
@@ -343,7 +216,7 @@ TreeNode<T>
 
 #### Defined in
 
-[binary-tree.ts:92](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L92)
+[binary-tree.ts:92](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L92)
 
 ___
 
@@ -361,7 +234,7 @@ T | undefined
 
 #### Defined in
 
-[binary-tree.ts:131](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L131)
+[binary-tree.ts:131](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L131)
 
 ___
 
@@ -379,7 +252,7 @@ number
 
 #### Defined in
 
-[binary-tree.ts:168](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L168)
+[binary-tree.ts:168](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L168)
 
 ___
 
@@ -401,7 +274,7 @@ Remove values
 
 #### Defined in
 
-[binary-tree.ts:81](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L81)
+[binary-tree.ts:81](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L81)
 
 ___
 
@@ -419,4 +292,4 @@ number
 
 #### Defined in
 
-[binary-tree.ts:160](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/binary-tree.ts#L160)
+[binary-tree.ts:160](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/binary-tree.ts#L160)

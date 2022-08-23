@@ -23,11 +23,6 @@
 
 ### Methods
 
-- [\_buildTree](SegmentTree.md#_buildtree)
-- [\_leftIndex](SegmentTree.md#_leftindex)
-- [\_parentIndex](SegmentTree.md#_parentindex)
-- [\_query](SegmentTree.md#_query)
-- [\_rightIndex](SegmentTree.md#_rightindex)
 - [query](SegmentTree.md#query)
 
 ## Constructors
@@ -54,7 +49,7 @@ Create the segment tree
 
 #### Defined in
 
-[segment-tree.ts:13](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L13)
+[segment-tree.ts:13](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/segment-tree.ts#L13)
 
 ## Properties
 
@@ -64,7 +59,7 @@ Create the segment tree
 
 #### Defined in
 
-[segment-tree.ts:16](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L16)
+[segment-tree.ts:16](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/segment-tree.ts#L16)
 
 ___
 
@@ -74,7 +69,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:14](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L14)
+[segment-tree.ts:14](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/segment-tree.ts#L14)
 
 ___
 
@@ -99,7 +94,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:15](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L15)
+[segment-tree.ts:15](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/segment-tree.ts#L15)
 
 ___
 
@@ -111,115 +106,9 @@ The array for the tree
 
 #### Defined in
 
-[segment-tree.ts:5](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L5)
+[segment-tree.ts:5](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/segment-tree.ts#L5)
 
 ## Methods
-
-### \_buildTree
-
-▸ `Private` **_buildTree**(`low`, `high`, `pos`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `low` | `number` |
-| `high` | `number` |
-| `pos` | `number` |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[segment-tree.ts:54](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L54)
-
-___
-
-### \_leftIndex
-
-▸ `Private` **_leftIndex**(`i`): `number`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `i` | `number` |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[segment-tree.ts:69](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L69)
-
-___
-
-### \_parentIndex
-
-▸ `Private` **_parentIndex**(`i`): `number`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `i` | `number` |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[segment-tree.ts:79](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L79)
-
-___
-
-### \_query
-
-▸ `Private` **_query**(`qLow`, `qHigh`, `low`, `high`, `pos`): `any`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `qLow` | `number` |
-| `qHigh` | `number` |
-| `low` | `number` |
-| `high` | `number` |
-| `pos` | `number` |
-
-#### Returns
-
-`any`
-
-#### Defined in
-
-[segment-tree.ts:39](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L39)
-
-___
-
-### \_rightIndex
-
-▸ `Private` **_rightIndex**(`i`): `number`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `i` | `number` |
-
-#### Returns
-
-`number`
-
-#### Defined in
-
-[segment-tree.ts:74](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L74)
-
-___
 
 ### query
 
@@ -242,4 +131,4 @@ T
 
 #### Defined in
 
-[segment-tree.ts:31](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L31)
+[segment-tree.ts:31](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/segment-tree.ts#L31)

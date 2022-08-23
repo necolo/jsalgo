@@ -8,7 +8,7 @@
   "scripts": {
     "test": "esrun __tests__/test.ts",
     "prepare": "npm run build",
-    "docs": "typedoc --plugin typedoc-plugin-markdown src/index.ts",
+    "docs": "typedoc --plugin typedoc-plugin-markdown --excludeInternal src/index.ts",
     "build": "tsc"
   },
   "repository": {

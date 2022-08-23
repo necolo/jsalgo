@@ -50,7 +50,7 @@ Create the fenwick tree
 
 #### Defined in
 
-[fenwick-tree.ts:13](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L13)
+[fenwick-tree.ts:13](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L13)
 
 ## Properties
 
@@ -60,7 +60,7 @@ Create the fenwick tree
 
 #### Defined in
 
-[fenwick-tree.ts:16](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L16)
+[fenwick-tree.ts:16](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L16)
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 #### Defined in
 
-[fenwick-tree.ts:14](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L14)
+[fenwick-tree.ts:14](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L14)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[fenwick-tree.ts:15](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L15)
+[fenwick-tree.ts:15](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L15)
 
 ___
 
@@ -107,7 +107,7 @@ The array of the tree
 
 #### Defined in
 
-[fenwick-tree.ts:5](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L5)
+[fenwick-tree.ts:5](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L5)
 
 ## Methods
 
@@ -131,7 +131,7 @@ the operated value
 
 #### Defined in
 
-[fenwick-tree.ts:44](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L44)
+[fenwick-tree.ts:44](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L44)
 
 ___
 
@@ -154,4 +154,4 @@ Update the value
 
 #### Defined in
 
-[fenwick-tree.ts:29](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L29)
+[fenwick-tree.ts:29](https://github.com/Necolo/jsalgo/blob/5898ba2/packages/tree/src/fenwick-tree.ts#L29)
