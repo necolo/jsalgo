@@ -4,4 +4,4 @@
 npm install @jsalgo/tree
 ```
 
-[-> Modules](docs/modules.md)
+[-> Documents](https://github.com/necolo/jsalgo/blob/master/packages/tree/docs/modules.md)

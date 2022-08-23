@@ -1,6 +1,6 @@
 {
   "name": "@jsalgo/tree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Binary search tree",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -36,7 +36,7 @@
   ],
   "author": "necolo <negko311@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/Necolo/jsalgo/packages/bst#readme",
+  "homepage": "https://github.com/Necolo/jsalgo/packages/tree#readme",
   "devDependencies": {
     "@ptree/core": "^1.0.0",
     "@types/tape": "^4.13.2",
