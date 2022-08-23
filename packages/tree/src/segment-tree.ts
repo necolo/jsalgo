@@ -26,7 +26,7 @@ export class SegmentTree<T> {
    * Query the value from the given range
    * @param start the start position
    * @param end  the end position
-   * @returns 
+   * @returns T
    */
   query(start: number, end: number) {
     return this._query(start, end, 0, this.inputs.length - 1, 0);
@@ -35,6 +35,7 @@ export class SegmentTree<T> {
   /* -------------------------------------------------------------------------- */
   /*                                local methods                               */
   /* -------------------------------------------------------------------------- */
+  /** @internal */
   private _query(qLow: number, qHigh: number, low: number, high: number, pos: number) {
     if (qLow <= low && qHigh >= high) {
       return this.tree[pos];
@@ -49,6 +50,7 @@ export class SegmentTree<T> {
     );
   }
 
+  /** @internal */
   private _buildTree(low: number, high: number, pos: number) {
     const { tree, inputs } = this;
     if (low === high) {
@@ -63,14 +65,17 @@ export class SegmentTree<T> {
     tree[pos] = this.operation(tree[left], tree[right]);
   }
 
+  /** @internal */
   private _leftIndex(i: number) {
     return (2 * i) + 1;
   }
 
+  /** @internal */
   private _rightIndex(i: number) {
     return (2 * i) + 2;
   }
 
+  /** @internal */
   private _parentIndex(i: number) {
     return Math.floor((i - 1) / 2);
   }

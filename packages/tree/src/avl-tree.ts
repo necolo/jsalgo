@@ -50,18 +50,21 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
   /*                               native methods                               */
   /* -------------------------------------------------------------------------- */
 
+  /** @internal */
   protected _addNode(node: AVLNode<T>) {
     const added = super._addNode(node);
     added && this._balance(node.parent);
     return added;
   }
 
+  /** @internal */
   protected _remove(value: T) {
     const affectedNode = super._remove(value);
     this._balance(affectedNode);
     return affectedNode;
   }
 
+  /** @internal */
   private _balance(node: AVLNode<T> | null) {
     if (!node) return;
     const heightChanged = node.updateHeight();
@@ -104,6 +107,7 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
     }
   }
 
+  /** @internal */
   private _rotateLeft(node: AVLNode<T>) {
     const temp = node.right;
     node.setRight(temp!.left);
@@ -113,6 +117,7 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
     return temp;
   }
 
+  /** @internal */
   private _rotateRight(node: AVLNode<T>) {
     const temp = node.left;
     node.setLeft(temp!.right);
@@ -122,11 +127,13 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
     return temp;
   }
 
+  /** @internal */
   private _rotateLeftRight(node: AVLNode<T>) {
     node.setLeft(this._rotateLeft(node.left!));
     return this._rotateRight(node);
   }
 
+  /** @internal */
   private _rotateRightLeft(node: AVLNode<T>) {
     node.setRight(this._rotateRight(node.right!));
     return this._rotateLeft(node);

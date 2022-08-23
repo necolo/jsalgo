@@ -1,8 +1,9 @@
 @jsalgo/tree / [Exports](modules.md)
 
-# @jsalgo/bst
+# @jsalgo/tree
 
-## Install
 ```
-npm install @jsalgo/bst
+npm install @jsalgo/tree
 ```
+
+[-> Documents](https://github.com/necolo/jsalgo/blob/master/packages/tree/docs/modules.md)

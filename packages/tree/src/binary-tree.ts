@@ -63,8 +63,8 @@ export class TreeNode<T = number> {
 }
 
 export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
-  public comparator: Comparator<T>;
-  public root: N | null = null;
+  comparator: Comparator<T>;
+  root: N | null = null;
 
   /**
    * Create the BinaryTree
@@ -87,7 +87,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   /**
    * Find the node by given value
    * @param value 
-   * @returns TreeNode
+   * @returns TreeNode<T>
    */
   findNode(value: T) {
     const node = this._findClosestNode(value);
@@ -100,7 +100,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   /**
    * Find the value by given key value
    * @param value 
-   * @returns 
+   * @returns T
    */
   find(value: T) {
     return this.findNode(value)?.value;
@@ -109,7 +109,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   /**
    * Find the closet value
    * @param value 
-   * @returns 
+   * @returns T
    */
   findClosest(value: T) {
     return this._findClosestNode(value)?.value;
@@ -118,7 +118,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   /**
    * If tree contains the value
    * @param value 
-   * @returns 
+   * @returns T
    */
   contains(value: T) {
     return Boolean(this.findNode(value));
@@ -126,7 +126,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
 
   /**
    * Find the most left value
-   * @returns 
+   * @returns T | undefined
    */
   findSmallest() {
     if (!this.root) {
@@ -137,7 +137,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
 
   /**
    * Find the most right value
-   * @returns 
+   * @returns T | undefined
    */
   findLargest() {
     if (!this.root) {
@@ -155,7 +155,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
 
   /**
    * Get the size of the tree
-   * @returns 
+   * @returns number
    */
   size() {
     return this.root?.size() || 0;
@@ -163,7 +163,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
 
   /**
    * Get the height of the tree
-   * @returns 
+   * @returns number
    */
   height() {
     return this.root?.calculateHeight() || 0;
@@ -173,6 +173,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   /*                               native methods                               */
   /* -------------------------------------------------------------------------- */
 
+  /** @internal */
   protected _addNode(node: N) {
     const parent = this._findClosestNode(node.value);
     if (!parent) {
@@ -188,11 +189,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return true;
   }
 
-  /**
-   * 
-   * @param node 
-   * @returns the moved node's parent
-   */
+  /** @internal */
   protected _remove(value: T) {
     let node = this.findNode(value);
     if (!node) return null;
@@ -230,6 +227,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return parent;
   }
 
+  /** @internal */
   protected _findClosestNode(value: T, startNode = this.root) {
     let parent: N | null = startNode?.parent || null;
     let node = startNode;
@@ -249,11 +247,13 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return parent;
   }
 
+  /** @internal */
   protected _setRoot(node: N) {
     this.root = node;
     node.parent = null;
   }
 
+  /** @internal */
   protected _findSmallestNode(node: N) {
     let result = node;
     while(result.left) {
@@ -262,6 +262,7 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return result;
   }
 
+  /** @internal */
   protected _findLargestNode(node: N) {
     let result = node;
     while(result.right) {

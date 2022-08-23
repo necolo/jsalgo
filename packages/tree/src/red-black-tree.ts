@@ -69,6 +69,7 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
     }
   }
 
+  /** @internal */
   protected _addNode(node: RBNode<T>) {
     const added = super._addNode(node);
     if (!added) return false;
@@ -118,6 +119,7 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
     return true;
   }
 
+  /** @internal */
   private _rotateLeft(n: RBNode<T>) {
     if (!n.parent) {
       this._setRoot(n);
@@ -134,6 +136,7 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
     g && g.setChild(p, n);
   }
 
+  /** @internal */
   private _rotateRight(n: RBNode<T>) {
     let g = n.grandParent;
     let p = n.parent;
@@ -147,7 +150,7 @@ export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
     g && g.setChild(p, n);
   }
 
-  // Delete cases
+  /** @internal */
   protected _remove(value: T) {
     let n = this.findNode(value);
     if (!n) return null;

@@ -54,7 +54,7 @@ Create the segment tree
 
 #### Defined in
 
-[segment-tree.ts:13](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L13)
+[segment-tree.ts:13](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L13)
 
 ## Properties
 
@@ -64,7 +64,7 @@ Create the segment tree
 
 #### Defined in
 
-[segment-tree.ts:16](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L16)
+[segment-tree.ts:16](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L16)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:14](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L14)
+[segment-tree.ts:14](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L14)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:15](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L15)
+[segment-tree.ts:15](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L15)
 
 ___
 
@@ -111,7 +111,7 @@ The array for the tree
 
 #### Defined in
 
-[segment-tree.ts:5](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L5)
+[segment-tree.ts:5](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L5)
 
 ## Methods
 
@@ -133,7 +133,7 @@ The array for the tree
 
 #### Defined in
 
-[segment-tree.ts:52](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L52)
+[segment-tree.ts:54](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L54)
 
 ___
 
@@ -153,7 +153,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:66](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L66)
+[segment-tree.ts:69](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L69)
 
 ___
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:74](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L74)
+[segment-tree.ts:79](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L79)
 
 ___
 
@@ -197,7 +197,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:38](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L38)
+[segment-tree.ts:39](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L39)
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 #### Defined in
 
-[segment-tree.ts:70](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L70)
+[segment-tree.ts:74](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L74)
 
 ___
 
@@ -238,6 +238,8 @@ Query the value from the given range
 
 `any`
 
+T
+
 #### Defined in
 
-[segment-tree.ts:31](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/segment-tree.ts#L31)
+[segment-tree.ts:31](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/segment-tree.ts#L31)

@@ -25,4 +25,4 @@
 
 #### Defined in
 
-[fenwick-tree.ts:57](https://github.com/Necolo/jsalgo/blob/0f5ab7c/packages/tree/src/fenwick-tree.ts#L57)
+[fenwick-tree.ts:57](https://github.com/Necolo/jsalgo/blob/23cbefe/packages/tree/src/fenwick-tree.ts#L57)
