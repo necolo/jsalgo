@@ -26,12 +26,20 @@ export class AVLTree<T = number> extends BinaryTree<T, AVLNode<T>> {
   root: AVLNode<T> | null = null;
   debug = false
 
+  /**
+   * Add values
+   * @param values 
+   */
   add(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
       this._addNode(new AVLNode(values[i], this.comparator));
     }
   }
 
+  /**
+   * Remove values
+   * @param values 
+   */
   remove(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
       this._remove(values[i]);

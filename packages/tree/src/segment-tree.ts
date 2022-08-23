@@ -1,6 +1,15 @@
 export class SegmentTree<T> {
+  /**
+   * The array for the tree
+   */
   tree: T[];
 
+  /**
+   * Create the segment tree
+   * @param inputs the initial values
+   * @param operation  the operation to calculate two values
+   * @param fallbackValue the fallback value
+   */
   constructor(
     public inputs: T[],
     public operation: (a: T, b: T) => T,
@@ -13,6 +22,12 @@ export class SegmentTree<T> {
     this._buildTree(0, len - 1, 0);
   }
 
+  /**
+   * Query the value from the given range
+   * @param start the start position
+   * @param end  the end position
+   * @returns 
+   */
   query(start: number, end: number) {
     return this._query(start, end, 0, this.inputs.length - 1, 0);
   }

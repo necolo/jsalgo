@@ -48,14 +48,21 @@ export class RBNode<T = number> extends TreeNode<T> {
 
 export class RedBlackTree<T = number> extends BinaryTree<T, RBNode<T>> {
   root: null | RBNode<T> = null;
-  debug = false;
 
+  /**
+   * Add values
+   * @param values 
+   */
   add(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
       this._addNode(new RBNode(values[i], this.comparator));
     }
   }
 
+  /**
+   * Remove values
+   * @param values 
+   */
   remove(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
       this._remove(values[i]);

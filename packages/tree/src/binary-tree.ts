@@ -66,16 +66,29 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
   public comparator: Comparator<T>;
   public root: N | null = null;
 
+  /**
+   * Create the BinaryTree
+   * @param compareFunc the customized comparator, default is (a, b) => a - b
+   */
   constructor(compareFunc?: CompareFunc<T>) {
     this.comparator = new Comparator(compareFunc);
   }
 
+  /**
+   * Remove values
+   * @param values 
+   */
   remove(...values: T[]) {
     for (let i = 0; i < values.length; i++) {
       this._remove(values[i]);
     }
   }
 
+  /**
+   * Find the node by given value
+   * @param value 
+   * @returns TreeNode
+   */
   findNode(value: T) {
     const node = this._findClosestNode(value);
     if (node && this.comparator.equals(value, node.value)) {
@@ -84,18 +97,37 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return null;
   }
 
+  /**
+   * Find the value by given key value
+   * @param value 
+   * @returns 
+   */
   find(value: T) {
     return this.findNode(value)?.value;
   }
 
+  /**
+   * Find the closet value
+   * @param value 
+   * @returns 
+   */
   findClosest(value: T) {
     return this._findClosestNode(value)?.value;
   }
 
+  /**
+   * If tree contains the value
+   * @param value 
+   * @returns 
+   */
   contains(value: T) {
     return Boolean(this.findNode(value));
   }
 
+  /**
+   * Find the most left value
+   * @returns 
+   */
   findSmallest() {
     if (!this.root) {
       return undefined;
@@ -103,6 +135,10 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return this._findSmallestNode(this.root).value;
   }
 
+  /**
+   * Find the most right value
+   * @returns 
+   */
   findLargest() {
     if (!this.root) {
       return undefined;
@@ -110,14 +146,25 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
     return this._findLargestNode(this.root).value;
   }
 
+  /**
+   * Clear the tree
+   */
   clear() {
     this.root = null;
   }
 
+  /**
+   * Get the size of the tree
+   * @returns 
+   */
   size() {
     return this.root?.size() || 0;
   }
 
+  /**
+   * Get the height of the tree
+   * @returns 
+   */
   height() {
     return this.root?.calculateHeight() || 0;
   }
@@ -167,23 +214,24 @@ export class BinaryTree<T = number, N extends TreeNode<T> = TreeNode<T>> {
       node = r;
     }
 
+    const p = node.parent as N;
     if (node.left) {
-      node.parent!.setChild(node, node.left);
+      p.setChild(node, node.left);
       return node.parent;
     }
 
     if (node.right) {
-      node.parent!.setChild(node, node.right);
+      p.setChild(node, node.right);
       return node.parent;
     }
 
     const parent = node.parent;
-    parent!.removeChild(node);
+    p.removeChild(node);
     return parent;
   }
 
   protected _findClosestNode(value: T, startNode = this.root) {
-    let parent = startNode?.parent || null;
+    let parent: N | null = startNode?.parent || null;
     let node = startNode;
     const { comparator } = this;
     while(node) {

@@ -1,9 +1,17 @@
 export class FenwickTree<T> {
+  /**
+   * The array of the tree
+   */
   tree: T[];
 
+  /**
+   * Create the fenwick tree
+   * @param inputs the initial values
+   * @param sum the operator to get the statistics of the values
+   * @param initValue the fallback/initial value for an empty node
+   */
   constructor(
     public inputs: T[],
-    // F = A + B
     public sum: (a: T, b: T) => T,
     public initValue: T,
   ) {
@@ -14,7 +22,7 @@ export class FenwickTree<T> {
   }
 
   /**
-   * 
+   * Update the value 
    * @param _i the index of the input array, start from 0
    * @param diff the diff from the old value
    */
@@ -29,9 +37,9 @@ export class FenwickTree<T> {
   }
 
   /**
-   * 
+   * Query the operated value on the position of the given array
    * @param i the index of the input array, start from 0
-   * @returns
+   * @returns the operated value
    */
   query(_i: number) {
     if (_i < 0 || _i >= this.tree.length - 1) {
