@@ -1,6 +1,7 @@
-# @jsalgo/bst
+# @jsalgo/tree
 
-## Install
 ```
-npm install @jsalgo/bst
+npm install @jsalgo/tree
 ```
+
+[-> Modules](docs/modules.md)
