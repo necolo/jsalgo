@@ -11,40 +11,16 @@ export class Heap<T> {
   /*                               native methods                               */
   /* -------------------------------------------------------------------------- */
 
-  private findParentIndex(index: number) {
+  private parent(index: number) {
     return Math.floor((index - 1) / 2);
   }
 
-  private findLeftChildIndex(index: number) {
+  private left(index: number) {
     return index * 2 + 1;
   }
 
-  private findRightChildIndex(index: number) {
+  private right(index: number) {
     return index * 2 + 2;
-  }
-
-  private hasLeftChild(index: number) {
-    return this.findLeftChildIndex(index) < this.list.length;
-  }
-
-  private hasRightChild(index: number) {
-    return this.findRightChildIndex(index) < this.list.length;
-  }
-
-  private hasParent(index: number) {
-    return this.findParentIndex(index) >= 0;
-  }
-
-  private leftChild(index: number) {
-    return this.list[this.findLeftChildIndex(index)];
-  }
-
-  private rightChild(index: number) {
-    return this.list[this.findRightChildIndex(index)];
-  }
-
-  private parent(index: number) {
-    return this.list[this.findParentIndex(index)];
   }
 
   private swap(idx1: number, idx2: number) {
@@ -120,7 +96,7 @@ export class Heap<T> {
     return this.list[idx];
   }
 
-  public getRoot() {
+  public peek() {
     return this.list[0];
   }
 
@@ -148,10 +124,10 @@ export class Heap<T> {
     }
 
     // find in left children
-    let targetIndex = this.indexOf(v, this.findLeftChildIndex(currIdx));
+    let targetIndex = this.indexOf(v, this.left(currIdx));
     if (targetIndex < 0) {
       // find in right children
-      targetIndex = this.indexOf(v, this.findRightChildIndex(currIdx));
+      targetIndex = this.indexOf(v, this.right(currIdx));
     }
 
     if (targetIndex >= 0) {
@@ -170,20 +146,22 @@ export class Heap<T> {
    */
   public heapifyDown(startIdx = 0) {
     let index = startIdx;
-    const { comparator } = this;
-    while (this.hasLeftChild(index)) {
-      let smallerChildIdx = this.findLeftChildIndex(index);
+    const { comparator, list } = this;
+    while (true) {
+      let left = this.left(index);
+      let right = this.right(index);
+      let smaller = left;
       if (
-        this.hasRightChild(index) &&
-        comparator.lessThan(this.rightChild(index), this.leftChild(index))
+        right < list.length &&
+        comparator.lessThan(list[right], list[left])
       ) {
-        smallerChildIdx = this.findRightChildIndex(index);
+        smaller = right;
       }
-      if (comparator.lessThan(this.list[index], this.list[smallerChildIdx])) {
+      if (smaller >= list.length || comparator.lessThan(list[index], list[smaller])) {
         break;
       }
-      this.swap(index, smallerChildIdx);
-      index = smallerChildIdx;
+      this.swap(index, smaller);
+      index = smaller;
     }
   }
 
@@ -191,34 +169,37 @@ export class Heap<T> {
    * Look up from the last element
    */
   public heapifyUp(startIdx = this.list.length - 1) {
-    const { comparator } = this;
+    const { comparator, list } = this;
     let index = startIdx;
+    let parent = this.parent(index);
     while (
-      this.hasParent(index) &&
-      comparator.lessThan(this.list[index], this.parent(index))
+      parent >= 0 &&
+      comparator.lessThan(list[index], list[parent])
     ) {
-      const parentIdx = this.findParentIndex(index);
-      this.swap(index, parentIdx);
-      index = parentIdx;
+      this.swap(index, parent);
+      index = parent;
+      parent = this.parent(index);
     }
   }
 
   public validate(idx: number = 0) {
-    if (!this.hasLeftChild(idx)) {
+    const { list, comparator } = this;
+    const left = this.left(idx);
+    if (left >= list.length) {
       return;
     }
-    const { comparator } = this;
-    if (comparator.lessThan(this.leftChild(idx), this.list[idx])) {
+    if (comparator.lessThan(list[left], this.list[idx])) {
       throw new Error(`Invalid heap: ${this.list[idx]}`);
     }
-    this.validate(this.findLeftChildIndex(idx));
-    if (!this.hasRightChild(idx)) {
+    this.validate(left);
+    const right = this.right(idx);
+    if (right >= list.length) {
       return;
     }
-    if (comparator.lessThan(this.rightChild(idx), this.list[idx])) {
+    if (comparator.lessThan(list[right], this.list[idx])) {
       throw new Error(`Invalid heap: ${this.list[idx]}`);
     }
-    this.validate(this.findRightChildIndex(idx));
+    this.validate(right);
   }
 
   public toString() {
