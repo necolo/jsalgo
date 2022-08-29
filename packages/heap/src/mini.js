@@ -20,24 +20,26 @@ class Heap {
   }
 
   poll() {
-    const v = this.list[0];
-    this.list[0] = this.list[this.length - 1];
-    this.list.length--;
+    const { list } = this;
+    const v = list[0];
+    list[0] = list[this.length - 1];
+    list.length--;
     this.heapifyDown();
     return v;
   }
 
   heapifyDown() {
+    const { list } = this;
     let i = 0;
     while(true) {
-      let l = left(i);
+      const l = i * 2 + 1;
       if (l >= this.length) break;
-      let r = right(i);
+      const r = i * 2 + 2;
       let target = l;
-      if (r < this.length && this.comparator(l, r) > 0) {
+      if (r < this.length && this.comparator(list[l], list[r]) > 0) {
         target = r;
       }
-      if (this.comparator(i, target) <= 0) break;
+      if (this.comparator(list[i], list[target]) <= 0) break;
       this.swap(i, target);
       i = target;
     }
@@ -45,10 +47,11 @@ class Heap {
 
   heapifyUp() {
     let i = this.length - 1;
+    const { list } = this;
     while(true) {
       let p = parent(i);
       if (p < 0) break;
-      if (this.comparator(this.list[p], this.list[i]) <= 0) break;
+      if (this.comparator(list[p], list[i]) <= 0) break;
       this.swap(p, i);
       i = p;
     }
@@ -63,12 +66,4 @@ class Heap {
 
 function parent(idx) {
   return Math.floor((idx - 1) / 2);
-}
-
-function left(idx) {
-  return idx * 2 + 1;
-}
-
-function right(idx) {
-  return idx * 2 + 2;
 }
